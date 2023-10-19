@@ -33,7 +33,12 @@ contract AaveV3_Ethereum_AddFXSToEthereumV3_20231019_Test is ProtocolV3TestBase 
       AaveV3Ethereum.POOL
     );
 
-    _noReservesConfigsChangesApartNewListings(allConfigsBefore, allConfigsAfter)
+    _noReservesConfigsChangesApartNewListings(allConfigsBefore, allConfigsAfter);
+    e2eTestAsset(
+      AaveV3Ethereum.POOL,
+      _findReserveConfig(allConfigsAfter, AaveV3EthereumAssets.WETH_UNDERLYING),
+      _findReserveConfig(allConfigsAfter, proposal.FXS())
+    );
 
     diffReports(
       'preAaveV3_Ethereum_AddFXSToEthereumV3_20231019',
